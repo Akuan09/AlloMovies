@@ -1,0 +1,210 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 25px;
+  background: rgb(146, 124, 124);
+  color: white;
+  transform: translate(-50%, -50%)
+}
+
+.title{
+  text-align: center;
+  background-color: black;
+  color: white;
+  padding: 1em;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.sub_title{
+  margin-left: 2em;
+  margin-right: 2em;
+  box-shadow: 8px 8px 8px red;
+}
+
+.navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: gray;
+  margin-top: 0;
+}
+
+.navBtn{
+  font-size: 22px;
+  padding: 0.5em;
+  padding-left: 5em;
+  padding-right: 5em;
+  background-color: gray;
+  border: 0px;
+}
+
+.navBtn:hover{
+  background-color: rgb(105, 103, 103);
+}
+
+.btnAdd{
+  font-size: 22px;
+  padding: 1em;
+  background-color: rgb(238, 35, 35);
+  border: thick double white;
+  color: white;
+}
+
+.btnAdd:hover{
+  background-color: white;
+  border: thick double rgb(238, 35, 35);
+  color: black;
+}
+
+.add{
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.movieDiv{
+  border: 4mm ridge rgba(174, 182, 25, 0.6);
+  margin: 1em;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 8px 10px 5px rgb(97, 76, 11);
+}
+
+.titleMovie{
+  font-size: 24px;
+  text-decoration: underline dotted;
+}
+
+.btnMovie{
+  font-size: 22px;
+  margin-right: 0.5em;
+  border: thick double white;
+  background-color: rgb(238, 35, 35);
+  color: white;
+}
+
+.btnMovie:hover{
+  background-color: white;
+  border: thick double rgb(238, 35, 35);
+  color: black;
+}
+
+.detailsMovie{
+  border: 4mm ridge rgba(174, 182, 25, 0.6);
+  margin-left: 2em;
+  margin-right: 2em;
+  padding-left: 2em;
+  align-items: center;
+  box-shadow: 8px 10px 5px rgb(97, 76, 11);
+}
+
+.detailsDirector{
+  display: flex;
+  border: thick double red;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding-left: 2em;
+  box-shadow: 5px 7px 3px rgb(97, 11, 35);
+}
+
+.imgDirector{
+  width: 10%;
+  margin: 2em;
+  border-radius: 50%;
+  animation-duration: 1s;
+  animation-name: slidein;
+  transition: transform 1s;
+}
+
+@keyframes slidein {
+  from {
+    width: 0%;
+    opacity: 0;
+  }
+
+  to {
+    width: 10%;
+    opacity: 1;
+  }
+}
+
+.imgDirector:hover {
+  transform: rotate(360deg);
+  /* border-radius: 0; */
+}
+
+.infosDir{
+  margin: 2em;
+  font-size: 22px;
+}
+
+input[type=text], select {
+  width: 20%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #825e05;
+  border-radius: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+input[type=submit] {
+  width: 10%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+}
+
+input[type=submit]:hover{
+  background-color: #409843;
+}
+
+.pointer{
+  cursor: pointer;
+}

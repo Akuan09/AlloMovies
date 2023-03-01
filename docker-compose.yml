@@ -1,0 +1,101 @@
+# Allo Movies project development docker-compose
+version: "3"      
+
+services:
+#--------------------------------------------------------------------------#
+#--------------------------------------------------------------------------#
+#                              N O D E   A P P                             #
+#--------------------------------------------------------------------------#
+#--------------------------------------------------------------------------#
+    am_app:
+        build: ./app
+        # env_file: ./cfg/.env
+        image: am_app_node:lts-alpine
+        container_name: am_app_ctn
+        # restart: always
+        depends_on:
+            - am_api
+        ports:
+            - 3000:3000
+        volumes:
+            - ./app:/app
+        environment:
+            - REACT_APP_API_HOST=localhost
+            - REACT_APP_API_PORT=3001
+
+#--------------------------------------------------------------------------#
+#--------------------------------------------------------------------------#
+#                              N O D E   A P I                             #
+#--------------------------------------------------------------------------#
+#--------------------------------------------------------------------------#
+    am_api:
+        build: ./api
+        # env_file: ./cfg/.env
+        image: am_api_node:latest
+        container_name: am_api_ctn
+        # restart: always
+        depends_on:
+            - am_db
+        links:
+            - am_db:am_db_host
+        ports:
+            - 3001:8080
+        volumes:
+            - ./api:/usr/src/app
+        environment:
+            - DB_HOST=am_db_host
+            - DB_PORT=3306
+            - DB_USER=movies_db
+            - DB_PSWD=am_pw
+            - DB_NAME=movies_db
+
+#--------------------------------------------------------------------------#
+#--------------------------------------------------------------------------#
+#                                 M Y S Q L                                #
+#--------------------------------------------------------------------------#
+#--------------------------------------------------------------------------#               
+    am_db:
+        # build: ./db_tmp
+        # env_file: ./cfg/.env
+        image: mysql:latest
+        container_name: am_db_ctn
+        # restart: always
+        ports:
+            - 3003:3306
+        # volumes:
+            # - ./db:/var/lib/mysql
+            # - ./db_logs:/var/log/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=mysqlpw
+            - MYSQL_USER=movies_db
+            - MYSQL_PASSWORD=am_pw
+            - MYSQL_DATABASE=movies_db
+
+#--------------------------------------------------------------------------#
+#--------------------------------------------------------------------------#
+#                            P H P M Y A D M I N                           #
+#--------------------------------------------------------------------------#
+#--------------------------------------------------------------------------#             
+    am_pma:
+        # build: ./pma_tmp
+        # env_file: ./cfg/.env
+        image: phpmyadmin:latest
+        container_name: am_pma_ctn
+        # restart: always
+        depends_on:
+            - am_db
+        links:
+            - am_db:am_db_host
+        ports:
+            - 3002:80
+        # volumes:
+            # - ./pma:/sessions
+        environment:
+            - PMA_HOST=am_db_host
+            - PMA_PORT=3306
+
+#--------------------------------------------------------------------------#
+#--------------------------------------------------------------------------#
+#                            E N D  O F  F I L E                           #
+#--------------------------------------------------------------------------#               
+#--------------------------------------------------------------------------#               
